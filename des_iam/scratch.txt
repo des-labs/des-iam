@@ -1,0 +1,38 @@
+https://deslabs.ncsa.illinois.edu/docs/auth/oauth2/callback
+
+
+curl -L -X GET http://des.ncsa.illinois.edu/iam/oidc/authorize/ \
+-d scope=openid \
+-d state=w94ty8wue45krjge4t \
+-d response_type=code \
+-d client_id=6orGkKrsM8tBkdqW539V4GDi1Uzui9cYZKS4Celu \
+-d redirect_uri=https://deslabs.ncsa.illinois.edu/docs/auth/oauth2/callback \
+-d code_challenge=l9KrwE103J8M8f4H7ztCQKtjIpg1PaDaRHRJS4jooG0 \
+-d code_challenge_method=S256
+
+http://des.ncsa.illinois.edu/iam/oidc/authorize/?scope=openid&state=w94ty8wue45krjge4t&response_type=code&client_id=6orGkKrsM8tBkdqW539V4GDi1Uzui9cYZKS4Celu&redirect_uri=https://deslabs.ncsa.illinois.edu/docs/auth/oauth2/callback&code_challenge=l9KrwE103J8M8f4H7ztCQKtjIpg1PaDaRHRJS4jooG0&code_challenge_method=S256
+
+
+/auth/oauth2/callback?code=8IoeSeBiFWsQNuxovd5PsB0aDJkm7d&state=w94ty8wue45krjge4t
+
+
+curl -L -X POST http://des.ncsa.illinois.edu/iam/oidc/token/ \
+-d 'grant_type=authorization_code' \
+-d 'client_id=6orGkKrsM8tBkdqW539V4GDi1Uzui9cYZKS4Celu' \
+-d 'client_secret=2572c70f00f181231693e04d3debca8cf20f5c113c4d49c9f3c92f88f05659c0' \
+-d 'redirect_uri=https://deslabs.ncsa.illinois.edu/docs/auth/oauth2/callback' \
+-d 'code_verifier=70506e9eb5cafaacdaa3e6ec7d694467f52c1edc91a0494de0aad4c3' \
+-d 'code=hQVuCMVZwD9LppedUBKbqidNnR7yUQ'
+
+
+
+pbkdf2_sha256$321234$srZyRBBLcatN0LGeZvr1MS$I7xYX9vb6wWmoteDcbGbfCBK7nIb1W2oKISbsS4+UTE=
+
+cGJrZGYyX3NoYTI1NiQzMjEyMzQkc3JaeVJCQkxjYXROMExHZVp2cjFNUyRJN3hZWDl2YjZ3V21vdGVEY2JHYmZDQks3bkliMVcyb0tJU2JzUzQrVVRFPQ==
+cGJrZGYyX3NoYTI1NiQzMjAwMDAkc3JQeVJBQkxnYXROMExHZVp2cjFNUyRJN3hZWDl2YjZ3V21vdGVEY2JHYmZDQks3bkliMVcyb0tJU2JzUzQrVVRFPQo
+cGJrZGYyX3NoYTI1NiQzMjAwMDAkc3JQeVJBQkxnYXROMExHZVp2cjFNUyRJN3hZWDl2YjZ3V21v
+dGVEY2JHYmZDQks3bkliMVcyb0tJU2JzUzQrVVRFPQo=
+cGJrZGYyX3NoYTI1NiQzMjAwMDAkc3JQeVJBQkxnYXROMExHZVp2cjFNUyRJN3hZWDl2YjZ3V21vdGVEY2JHYmZDQks3bkliMVcyb0tJU2JzUzQrVVRFPQ
+GET
+	https://deslabs.ncsa.illinois.edu/docs/auth/oauth2/callback?code=BGfFnWHA0A3J5p6pzxR7exkQoY6MJ9&state=w94ty8wue45krjge4tGET
+	https://deslabs.ncsa.illinois.edu/docs/auth/oauth2/callback?code=H1G8qm7rOXsowUfoAumsoQcX0tS8lV&state=w94ty8wue45krjge4t

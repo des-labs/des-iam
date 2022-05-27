@@ -1,0 +1,31 @@
+{% extends "admin/base.html" %}
+
+{% block extrastyle %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'des_oauth/style.css' %}">
+{% endblock %}
+
+{% block branding %}
+  <div class="header-logo"></div>
+  <div class="header-banner">DES Labs <span class="banner-subtitle">// Authentication</span></div>
+{% endblock %}
+
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'index' %}">Home</a>
+{% if title %} &rsaquo; {{ title }}{% endif %}
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<p>You are logged in as "{{ user.first_name }} {{ user.last_name }}"</p>
+<p>username: {{ user.username }}</p>
+<p>email: {{ user.email }}</p>
+{% else %}
+<p>Please login to see this page.</p>
+{% endif %}
+
+{% endblock %}

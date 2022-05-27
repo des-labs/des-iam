@@ -1,0 +1,66 @@
+{% extends "admin/base.html" %}
+
+{% block extrastyle %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'des_oauth/style.css' %}">
+{% endblock %}
+
+{% block branding %}
+  <div class="header-logo"></div>
+  <div class="header-banner">DES Labs <span class="banner-subtitle">// Authentication</span></div>
+{% endblock %}
+
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'index' %}">Home</a>
+{% if title %} &rsaquo; {{ title }}{% endif %}
+</div>
+{% endblock %}
+
+{% block content %}
+
+<p class="login-instructions">
+    Enter your DES collaboration credentials to authenticate.
+    This is the username and password which allow you to login to DESaccess and to access the DES Oracle database <code>dessci</code>. 
+    These are not your public database credentials.
+</p>
+<p>
+</p>
+<p>
+</p>
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" value="LOGIN">
+<input type="hidden" name="next" value="{{ next }}">
+</form>
+
+{# Assumes you set up the password_reset view in your URLconf #}
+<p><a href="{{ password_reset_link }}">Lost password?</a></p>
+
+{% endblock %}

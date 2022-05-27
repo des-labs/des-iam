@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+
+{% block extrastyle %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'des_oauth/style.css' %}">
+{% endblock %}
+
+{% block branding %}
+  <div class="header-logo"></div>
+  <div class="header-banner">DES Labs <span class="banner-subtitle">// Authentication</span></div>
+{% endblock %}
+
+{% block content %}
+<h1>{{ organization }} OpenID Connect Authentication Provider</h1>
+
+<p>This OpenID Connect (OIDC) server is part of the DESaccess services of the Dark Energy Survey Data Management group at the National Center for Supercomputing Applications (NCSA) at the University of Illinois at Urbana-Champaign (UIUC).</p>
+<!-- <p>
+  <a class="button" href="{{ login_link }}">Login here</a>
+</p> -->
+<a href="{{ login_link }}">
+<input type="submit" value="LOGIN">
+</input>
+</a>
+{% endblock %}

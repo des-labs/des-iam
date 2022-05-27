@@ -1,5 +1,11 @@
 # DES OpenID Connect Provider
 
+## Overview
+
+This is the source code for [the OpenID Connect (OIDC) server](https://deslabs.ncsa.illinois.edu/iam) that supports [the DESaccess services](https://des.ncsa.illinois.edu/releases/dr2/dr2-access) of the Dark Energy Survey Data Management (DESDM) group at the National Center for Supercomputing Applications (NCSA) at the University of Illinois at Urbana-Champaign (UIUC).
+
+The identity and access management (IAM) system used by DES relies on an Oracle database backend for authentication. This OIDC provider service allows third-party applications, such as a JupyterHub deployment, to authenticate users following OAuth2 web standard protocols. It supports role-based access control (RBAC) via the OIDC `groups` claim and the Django native user and group configuration.
+
 ## Links
 
 * [OAuth libraries for Python](https://oauth.net/code/python/)

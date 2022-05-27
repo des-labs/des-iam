@@ -6,6 +6,7 @@ networks:
 
 volumes:
   postgres: {}
+  waitforit: {}
 
 services:
   db:
@@ -36,6 +37,9 @@ services:
           do echo waiting for database;
           sleep 2;
           done;
+          touch /tmp/db_ready;
+    volumes:
+      - waitforit:/tmp
   des-iam-init-django-migrate:
     image: des_iam
     build:
@@ -49,9 +53,16 @@ services:
     command:
       - '/bin/bash'
       - '-c'
-      - 'python3 manage.py migrate'
+      - >
+        while [[ ! -f /tmp/db_ready ]]; do
+          echo waiting for database;
+          sleep 2;
+        done;
+        python3 manage.py migrate;
+        touch /tmp/migration_complete
     volumes:
       - .:/home/worker/des_iam
+      - waitforit:/tmp
   des-iam-init-django-createsuperuser:
     image: des_iam
     build:
@@ -66,9 +77,15 @@ services:
     command:
       - '/bin/bash'
       - '-c'
-      - 'bash provisionsuperuser.sh'
+      - >
+        while [[ ! -f /tmp/migration_complete ]]; do
+          echo waiting for database;
+          sleep 2;
+        done;
+        bash provisionsuperuser.sh
     volumes:
       - .:/home/worker/des_iam
+      - waitforit:/tmp
   des-iam:
     image: des_iam
     build:
@@ -86,6 +103,12 @@ services:
     command:
       - '/bin/bash'
       - '-c'
-      - 'python3 manage.py runserver 0.0.0.0:8000'
+      - >
+        while [[ ! -f /tmp/db_ready ]]; do
+          echo waiting for database;
+          sleep 2;
+        done;
+        python3 manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/home/worker/des_iam
+      - waitforit:/tmp
